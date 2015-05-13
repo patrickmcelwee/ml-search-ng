@@ -698,12 +698,12 @@
     showMoreFacets: function showMoreFacets(facet, facetName) {
       var _this = this;
       mlRest.queryConfig(this.getQueryOptions(), 'constraint').then(function(resp) {
-        var options =
-        resp.data.options.constraint;
+        var options = resp.data.options.constraint;
 
         var myOption = options.filter(function (option) {
           return option.name === facetName;
         })[0];
+        if (!myOption) {throw 'No constraint exists matching ' + facetName;}
 
         var searchOptions = _this.getQuery();
         searchOptions.options = {};
